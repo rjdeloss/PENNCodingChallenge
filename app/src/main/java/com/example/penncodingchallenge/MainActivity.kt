@@ -3,44 +3,38 @@ package com.example.penncodingchallenge
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.penncodingchallenge.ui.theme.PENNCodingChallengeTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PENNCodingChallengeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+            val navController = rememberNavController()
+            val scope = rememberCoroutineScope()
+
+            NavHost(navController = navController, startDestination = "launch_screen") {
+                composable("launch_screen") {
+                    LaunchScreen()
+                    LaunchedEffect(Unit) {
+                        scope.launch {
+                            delay(2000)
+                            navController.navigate("main_screen") {
+                                popUpTo("launch_screen") { inclusive = true }
+                            }
+                        }
+                    }
+                }
+                composable("main_screen") {
+                    MainScreen()
                 }
             }
+
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PENNCodingChallengeTheme {
-        Greeting("Android")
     }
 }

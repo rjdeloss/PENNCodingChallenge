@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -61,16 +60,17 @@ fun SearchBar(
 @Composable
 fun LocationInfoCard(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        Text(text = "Location: Longitude, Latitude")
-        Text(text = "City: Bangkok")
-        Text(text = "Weather Station: AG1")
+        Text(text = "Longitude: 3123235341", fontSize = 24.sp)
+        Text(text = "Latitude: 343242321", fontSize = 24.sp)
+        Text(text = "City: Bangkok", fontSize = 24.sp)
+        Text(text = "Weather Station: AG1", fontSize = 24.sp)
     }
 }
 
 @Composable
 fun AQITabs(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        Text(text = "AQI Information", fontSize = 28.sp )
+        Text(text = "AQI Information", fontSize = 28.sp, fontWeight = FontWeight.Bold )
         Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
             Column (horizontalAlignment = Alignment.CenterHorizontally){
                 Text(text = "Yesterday", fontSize = 20.sp)
@@ -94,7 +94,7 @@ fun AQITabs(modifier: Modifier = Modifier) {
 @Composable
 fun ForecastCard(modifier: Modifier =Modifier) {
     Column(modifier = modifier) {
-        Text(text = "Forecast", fontSize = 28.sp)
+        Text(text = "Forecast", fontSize = 28.sp, fontWeight = FontWeight.Bold)
         Text(text = "average: 154", fontSize = 24.sp)
         Text(text = "min: 131", fontSize = 24.sp)
         Text(text = "max: 157", fontSize = 24.sp)

@@ -15,6 +15,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -23,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, viewModel: MainViewModel = MainViewModel()) {
     Column(verticalArrangement = Arrangement.SpaceBetween) {
         SearchBar(modifier.padding(16.dp))
-        LocationInfoCard(modifier.padding(16.dp))
+        LocationInfoCard(modifier.padding(16.dp), viewModel)
         AQITabs(modifier.padding(16.dp))
         ForecastCard(modifier.padding(16.dp))
     }
@@ -58,10 +60,12 @@ fun SearchBar(
 }
 
 @Composable
-fun LocationInfoCard(modifier: Modifier = Modifier) {
+fun LocationInfoCard(modifier: Modifier = Modifier, viewModel: MainViewModel) {
+    val state by viewModel.state.collectAsState()
+
     Column(modifier = modifier) {
-        Text(text = "Longitude: 3123235341", fontSize = 24.sp)
-        Text(text = "Latitude: 343242321", fontSize = 24.sp)
+        Text(text = "Longitude: ${state.longitude}", fontSize = 24.sp)
+        Text(text = "Latitude: ${state.latitude}", fontSize = 24.sp)
         Text(text = "City: Bangkok", fontSize = 24.sp)
         Text(text = "Weather Station: AG1", fontSize = 24.sp)
     }

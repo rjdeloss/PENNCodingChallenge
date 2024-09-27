@@ -1,6 +1,6 @@
-package com.example.penncodingchallenge
+package com.example.penncodingchallenge.models
 
-data class HomeState(
+data class LocationState(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0
 )

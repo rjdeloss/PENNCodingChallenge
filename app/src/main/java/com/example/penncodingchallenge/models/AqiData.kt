@@ -1,6 +1,6 @@
-package com.example.penncodingchallenge
+package com.example.penncodingchallenge.models
 
 data class AqiData(
-    val status: String,
-    val data: Any,
+    val status: String = "",
+    val data: String = "",
 )

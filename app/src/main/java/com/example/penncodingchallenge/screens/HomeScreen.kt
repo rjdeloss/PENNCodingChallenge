@@ -1,4 +1,4 @@
-package com.example.penncodingchallenge
+package com.example.penncodingchallenge.screens
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -23,14 +23,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.penncodingchallenge.HomeViewModel
+import com.example.penncodingchallenge.models.AqiData
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier, viewModel: MainViewModel = MainViewModel()) {
+fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel = HomeViewModel()) {
+    val aqiData = viewModel.aqiData.collectAsState()
+    
     Column(verticalArrangement = Arrangement.SpaceBetween) {
         SearchBar(modifier.padding(16.dp))
         LocationInfoCard(modifier.padding(16.dp), viewModel)
         AQITabs(modifier.padding(16.dp))
         ForecastCard(modifier.padding(16.dp))
+        Text(text = "${aqiData.value}")
     }
 
 }
@@ -60,7 +65,7 @@ fun SearchBar(
 }
 
 @Composable
-fun LocationInfoCard(modifier: Modifier = Modifier, viewModel: MainViewModel) {
+fun LocationInfoCard(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
     val state by viewModel.state.collectAsState()
 
     Column(modifier = modifier) {
@@ -108,5 +113,5 @@ fun ForecastCard(modifier: Modifier =Modifier) {
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    MainScreen()
+    HomeScreen()
 }

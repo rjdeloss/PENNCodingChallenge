@@ -1,4 +1,4 @@
 package com.example.penncodingchallenge
 
-object RetrofitInstance {
+interface AqiApiInterface {
 }

@@ -1,4 +1,4 @@
-package com.example.penncodingchallenge
+package com.example.penncodingchallenge.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.penncodingchallenge.R
 
 @Composable
 fun LaunchScreen(modifier: Modifier = Modifier) {

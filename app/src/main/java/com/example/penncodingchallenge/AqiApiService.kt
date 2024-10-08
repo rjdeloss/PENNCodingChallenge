@@ -7,11 +7,11 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface AqiApiInterface {
-    @GET("/feed/{city}")
-    suspend fun getAqiWithCity(@Query("city") city: String, @Query("token") token: String): Call<AqiData>
+interface AqiApi {
+    @GET("/feed/{city}/")
+    suspend fun getAqiWithCity(@Path("city") city: String, @Query("token") token: String): Response<AqiData>
 
-    @GET("/feed/:city")
+    @GET("/feed/here/")
     suspend fun getAQIWithIPAddress(): Response<AqiData>
     @GET("/feed/geo:")
     suspend fun getNearestStation(@Query("key") token: String): Response<AqiData>
